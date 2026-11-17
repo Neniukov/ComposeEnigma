@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Motion Studies</string>
+    <string name="catalog_brand">motion.</string>
+    <string name="catalog_headline">Made to\nmove.</string>
+    <string name="catalog_description">A collection of interactive animations. Pick a study and explore it.</string>
+    <string name="catalog_collection">THE COLLECTION</string>
+    <string name="catalog_footer">Small details. A little more life.</string>
+    <string name="catalog_explore">Explore animation</string>
+    <string name="catalog_open_animation">Open %1$s animation</string>
+    <plurals name="catalog_study_count">
+        <item quantity="one">%d study</item>
+        <item quantity="other">%d studies</item>
+    </plurals>
+    <string name="journey_title">Journey</string>
+    <string name="journey_description">A travel card unfolds into a mountain escape. Open it, save it, or watch the journey play.</string>
+    <string name="journey_category">CARD TO DESTINATION</string>
+    <string name="brand">roam.</string>
+    <string name="edition">A FIELD GUIDE TO ELSEWHERE</string>
+    <string name="headline">Take the\nscenic route.</string>
+    <string name="curated_escapes">CURATED ESCAPES</string>
+    <string name="issue">VOL. 01 / THE ALPINE EDIT</string>
+    <string name="coordinates">46°38′ N  11°43′ E</string>
+    <string name="location">SOUTH TYROL, ITALY</string>
+    <string name="destination">The Dolomites</string>
+    <string name="card_caption">A little closer to the extraordinary.</string>
+    <string name="open_escape">Explore the Dolomites</string>
+    <string name="close_escape">Back to curated escapes</string>
+    <string name="save_escape">Save this escape</string>
+    <string name="saved_escape">Escape saved</string>
+    <string name="unsave_escape">Remove saved escape</string>
+    <string name="play_journey">Play the journey</string>
+    <string name="stop_journey">Stop the journey</string>
+    <string name="detail_eyebrow">HIGHER UP. SLOWER DOWN.</string>
+    <string name="detail_headline">Find your\nkind of nowhere.</string>
+    <string name="detail_copy">Ridge walks, quiet mornings, and a little room to breathe. Take the long way home.</string>
+    <string name="altitude">2,519 m</string>
+    <string name="altitude_label">ALTITUDE</string>
+    <string name="distance">8.4 km</string>
+    <string name="distance_label">TRAIL</string>
+    <string name="duration">3–4 hrs</string>
+    <string name="duration_label">SLOW TIME</string>
+    <string name="trail_name">The Seceda ridge</string>
+    <string name="trail_caption">One path. A different perspective.</string>
+    <string name="photo_description">Sunrise over the jagged Dolomites and a winding path through green alpine meadows</string>
+    <string name="index">01</string>
+    <string name="collection_count">/ 03</string>
+</resources>

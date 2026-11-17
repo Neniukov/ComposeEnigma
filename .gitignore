@@ -1,35 +1,40 @@
-# Gradle files
+# Gradle and Kotlin caches and build output
 .gradle/
-build/
 .kotlin/
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
-captures/
+**/build/
 .externalNativeBuild/
 .cxx/
-*.aab
-*.apk
-output-metadata.json
 
-# IntelliJ
-*.iml
+# Android Studio and IntelliJ local files
 .idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
+*.iml
+*.ipr
+*.iws
+local.properties
 
-# Keystore files
+# Generated packages, captures, logs and profiling data
+*.apk
+*.aab
+*.ap_
+output-metadata.json
+*.log
+*.hprof
+/captures/
+/output/
+
+# Signing keys and local credentials
 *.jks
 *.keystore
-
-# Google Services (e.g. APIs or Firebase)
+keystore.properties
+signing.properties
 google-services.json
 
-# Android Profiling
-*.hprof
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local working notes and Python caches
+/docs/journey-recording.md
+/docs/linkedin-journey-post.md
+__pycache__/
+*.pyc
