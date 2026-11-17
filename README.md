@@ -1,1 +1,1 @@
-**Compose Enigma** — A playground for creative animations, interactive UI experiments, and beautiful visual effects built entirely with Jetpack Compose.
+A creative playground for exploring animations, motion, and visual effects in Jetpack Compose.
