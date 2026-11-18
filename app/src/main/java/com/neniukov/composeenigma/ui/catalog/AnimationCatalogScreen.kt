@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.neniukov.composeenigma.R
 import com.neniukov.composeenigma.ui.components.Glyph
 import com.neniukov.composeenigma.ui.components.GlyphView
+import com.neniukov.composeenigma.ui.portal.LiquidPortalCover
 import com.neniukov.composeenigma.ui.theme.MotionStudiesTheme
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
 
@@ -151,12 +152,16 @@ private fun AnimationCard(demo: AnimationDemo, onOpen: () -> Unit) {
             ),
     ) {
         Box(Modifier.fillMaxWidth().aspectRatio(1.5f)) {
-            Image(
-                painterResource(demo.cover),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize(),
-            )
+            if (demo == AnimationDemo.LiquidPortal) {
+                LiquidPortalCover(Modifier.fillMaxSize())
+            } else {
+                Image(
+                    painterResource(demo.cover),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
             Box(
                 Modifier.fillMaxSize().background(
                     Brush.verticalGradient(listOf(Color.Transparent, C.PhotoShade.copy(alpha = .75f))),

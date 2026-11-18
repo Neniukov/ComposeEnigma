@@ -11,6 +11,13 @@ internal enum class AnimationDemo(
     @param:StringRes val coverTitle: Int,
     @param:DrawableRes val cover: Int,
 ) {
+    LiquidPortal(
+        title = R.string.portal_title,
+        description = R.string.portal_description,
+        category = R.string.portal_category,
+        coverTitle = R.string.portal_cover_title,
+        cover = R.drawable.portal_desert,
+    ),
     Journey(
         title = R.string.journey_title,
         description = R.string.journey_description,

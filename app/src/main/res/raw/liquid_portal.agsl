@@ -1,0 +1,81 @@
+uniform shader mountains;
+uniform shader desert;
+uniform float2 resolution;
+uniform float2 mountainSize;
+uniform float2 desertSize;
+uniform float2 center;
+uniform float2 drag;
+uniform float opening;
+uniform float time;
+uniform float2 rippleOrigin;
+uniform float ripple;
+layout(color) uniform half4 nightTint;
+layout(color) uniform half4 rimTint;
+
+float square(float value) {
+    return value * value;
+}
+
+float2 imagePoint(float2 p, float2 imageSize) {
+    float scale = max(resolution.x / imageSize.x, resolution.y / imageSize.y);
+    return (p - resolution * 0.5) / scale + imageSize * 0.5;
+}
+
+half3 night(float2 p) {
+    half3 image = mountains.eval(imagePoint(p, mountainSize)).rgb;
+    half luminance = dot(image, half3(0.2126, 0.7152, 0.0722));
+    return mix(luminance * nightTint.rgb, image * 0.38, 0.16);
+}
+
+half4 main(float2 pixel) {
+    float unit = min(resolution.x, resolution.y);
+    float2 uv = pixel / resolution;
+    float2 p = pixel / unit;
+    float2 c = center * resolution / unit;
+    float2 q = p - c;
+    float2 direction = normalize(drag * resolution / unit + float2(0.0001, 0.0));
+    float stretch = min(length(drag * resolution / unit) * 2.4, 0.32);
+    q -= direction * dot(q, direction) * stretch;
+    float angle = atan(q.y, q.x);
+    float radius = 0.335 * pow(max(opening, 0.0), 0.72);
+    float undulation = (sin(angle * 3.0 + time * 1.15) * 0.012
+                      + sin(angle * 5.0 - time * 1.45) * 0.006
+                      + sin(angle * 2.0 - time * 0.7) * 0.008) * opening;
+    float sdf = length(q) - radius - undulation;
+    float aa = 1.4 / unit;
+    float mask = (1.0 - smoothstep(-aa, aa, sdf)) * smoothstep(0.0, 0.035, opening);
+    float2 normal = normalize(q + float2(0.0001, 0.0));
+
+    float2 waveDelta = p - rippleOrigin * resolution / unit;
+    float waveDistance = length(waveDelta);
+    float waveFront = 0.04 + ripple * 1.35;
+    float waveBand = exp(-square((waveDistance - waveFront) / 0.065));
+    float wave = sin((waveDistance - waveFront) * 65.0) * waveBand * (1.0 - ripple);
+    float2 waveOffset = normalize(waveDelta + float2(0.0001)) * wave * unit * 0.02;
+
+    float glass = exp(-abs(sdf) * 48.0) * opening;
+    half3 background = night(pixel + waveOffset + normal * glass * 13.0);
+    float2 lensPoint = (pixel - c * unit) * 0.88 + resolution * 0.5;
+    lensPoint += (c * unit - resolution * 0.5) * 0.14;
+    lensPoint += normal * glass * 24.0;
+    float chroma = glass * 5.0;
+    half3 otherWorld = half3(
+        desert.eval(imagePoint(lensPoint + normal * chroma, desertSize)).r,
+        desert.eval(imagePoint(lensPoint, desertSize)).g,
+        desert.eval(imagePoint(lensPoint - normal * chroma, desertSize)).b
+    );
+    half3 color = mix(background, otherWorld, mask);
+
+    half3 spectrum = 0.55 + 0.45 * cos(half3(0.0, 2.1, 4.2) + angle * 2.0 + time * 0.48);
+    float outerGlow = exp(-abs(sdf) * 25.0) * 0.21;
+    float meniscus = exp(-square((sdf + 0.008) / 0.012)) * 0.62;
+    float hairline = exp(-square(sdf / 0.0025));
+    float specular = pow(max(0.0, cos(angle + 2.1)), 10.0);
+    color += (spectrum * (outerGlow + meniscus) + rimTint.rgb * hairline * (0.35 + specular * 0.8))
+           * smoothstep(0.0, 0.08, opening);
+    color += rimTint.rgb * waveBand * (1.0 - ripple) * 0.055;
+
+    float vignette = 1.0 - 0.32 * length((uv - 0.5) * float2(1.0, 0.8));
+    float grain = fract(sin(dot(pixel, float2(12.9898, 78.233))) * 43758.5453) - 0.5;
+    return half4(color * vignette + grain * 0.012, 1.0);
+}
