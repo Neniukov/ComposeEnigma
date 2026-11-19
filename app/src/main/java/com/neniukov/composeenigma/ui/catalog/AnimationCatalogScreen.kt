@@ -44,6 +44,7 @@ import com.neniukov.composeenigma.ui.components.Glyph
 import com.neniukov.composeenigma.ui.components.GlyphView
 import com.neniukov.composeenigma.ui.portal.LiquidPortalCover
 import com.neniukov.composeenigma.ui.theme.MotionStudiesTheme
+import com.neniukov.composeenigma.ui.vinyl.KineticVinylCover
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
 
 @Composable
@@ -152,11 +153,11 @@ private fun AnimationCard(demo: AnimationDemo, onOpen: () -> Unit) {
             ),
     ) {
         Box(Modifier.fillMaxWidth().aspectRatio(1.5f)) {
-            if (demo == AnimationDemo.LiquidPortal) {
-                LiquidPortalCover(Modifier.fillMaxSize())
-            } else {
-                Image(
-                    painterResource(demo.cover),
+            when (demo) {
+                AnimationDemo.KineticVinyl -> KineticVinylCover(Modifier.fillMaxSize())
+                AnimationDemo.LiquidPortal -> LiquidPortalCover(Modifier.fillMaxSize())
+                AnimationDemo.Journey -> Image(
+                    painterResource(R.drawable.dolomites),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),

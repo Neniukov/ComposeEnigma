@@ -22,6 +22,8 @@ import com.neniukov.composeenigma.ui.journey.JourneyRoute
 import com.neniukov.composeenigma.ui.journey.navigation.JourneyNavKey
 import com.neniukov.composeenigma.ui.portal.LiquidPortalRoute
 import com.neniukov.composeenigma.ui.portal.navigation.PortalNavKey
+import com.neniukov.composeenigma.ui.vinyl.KineticVinylRoute
+import com.neniukov.composeenigma.ui.vinyl.navigation.VinylNavKey
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
 
 @Composable
@@ -56,12 +58,28 @@ internal fun MotionApp() {
                         backStack.add(PortalNavKey.LiquidPortal)
                     }
                 }
+                val openVinyl = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(VinylNavKey.KineticVinyl)
+                    }
+                }
                 AnimationCatalogScreen(
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<VinylNavKey.KineticVinyl> {
+                KineticVinylRoute(
+                    isActive = backStack.lastOrNull() == VinylNavKey.KineticVinyl,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == VinylNavKey.KineticVinyl) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )
