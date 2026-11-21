@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.neniukov.composeenigma.R
 import com.neniukov.composeenigma.ui.components.Glyph
 import com.neniukov.composeenigma.ui.components.GlyphView
+import com.neniukov.composeenigma.ui.droid.DroidCover
 import com.neniukov.composeenigma.ui.portal.LiquidPortalCover
 import com.neniukov.composeenigma.ui.theme.MotionStudiesTheme
 import com.neniukov.composeenigma.ui.vinyl.KineticVinylCover
@@ -154,6 +155,7 @@ private fun AnimationCard(demo: AnimationDemo, onOpen: () -> Unit) {
     ) {
         Box(Modifier.fillMaxWidth().aspectRatio(1.5f)) {
             when (demo) {
+                AnimationDemo.HelloAndroid -> DroidCover(Modifier.fillMaxSize())
                 AnimationDemo.KineticVinyl -> KineticVinylCover(Modifier.fillMaxSize())
                 AnimationDemo.LiquidPortal -> LiquidPortalCover(Modifier.fillMaxSize())
                 AnimationDemo.Journey -> Image(

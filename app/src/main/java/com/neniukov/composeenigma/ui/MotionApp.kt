@@ -18,6 +18,8 @@ import androidx.navigation3.ui.NavDisplay
 import com.neniukov.composeenigma.ui.catalog.AnimationCatalogScreen
 import com.neniukov.composeenigma.ui.catalog.AnimationDemo
 import com.neniukov.composeenigma.ui.catalog.navigation.CatalogNavKey
+import com.neniukov.composeenigma.ui.droid.DroidRoute
+import com.neniukov.composeenigma.ui.droid.navigation.DroidNavKey
 import com.neniukov.composeenigma.ui.journey.JourneyRoute
 import com.neniukov.composeenigma.ui.journey.navigation.JourneyNavKey
 import com.neniukov.composeenigma.ui.portal.LiquidPortalRoute
@@ -48,6 +50,11 @@ internal fun MotionApp() {
         sceneStrategies = listOf(SinglePaneSceneStrategy()),
         entryProvider = entryProvider {
             entry<CatalogNavKey.Catalog> {
+                val openDroid = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(DroidNavKey.HelloAndroid)
+                    }
+                }
                 val openJourney = dropUnlessResumed {
                     if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
                         backStack.add(JourneyNavKey.Journey)
@@ -67,9 +74,20 @@ internal fun MotionApp() {
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.HelloAndroid -> openDroid()
                             AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<DroidNavKey.HelloAndroid> {
+                DroidRoute(
+                    isActive = backStack.lastOrNull() == DroidNavKey.HelloAndroid,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == DroidNavKey.HelloAndroid) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )

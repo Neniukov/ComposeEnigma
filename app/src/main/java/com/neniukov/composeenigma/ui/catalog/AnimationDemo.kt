@@ -9,6 +9,12 @@ internal enum class AnimationDemo(
     @param:StringRes val category: Int,
     @param:StringRes val coverTitle: Int,
 ) {
+    HelloAndroid(
+        title = R.string.droid_title,
+        description = R.string.droid_description,
+        category = R.string.droid_category,
+        coverTitle = R.string.droid_cover_title,
+    ),
     KineticVinyl(
         title = R.string.vinyl_title,
         description = R.string.vinyl_description,

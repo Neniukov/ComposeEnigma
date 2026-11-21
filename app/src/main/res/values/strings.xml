@@ -1,4 +1,23 @@
 <resources>
+    <string name="droid_title">Hello, Android</string>
+    <string name="droid_description">A familiar face with a little more dimension. Turn, wave, and take a leap.</string>
+    <string name="droid_category">CHARACTER, LIGHT &amp; PLAY</string>
+    <string name="droid_cover_title">A little more alive.</string>
+    <string name="droid_brand">android.</string>
+    <string name="droid_eyebrow">A FRIEND IN THREE DIMENSIONS</string>
+    <string name="droid_headline">Hello,\nold friend.</string>
+    <string name="droid_subtitle">A little curiosity. A lot of personality.</string>
+    <string name="droid_hint">DRAG TO TURN · MADE TO PLAY</string>
+    <string name="droid_wave">Say hello</string>
+    <string name="droid_flip">Do a flip</string>
+    <string name="droid_pause">Pause animation</string>
+    <string name="droid_play">Resume animation</string>
+    <string name="droid_back">Back to the collection</string>
+    <string name="droid_rotate_left">Rotate left</string>
+    <string name="droid_rotate_right">Rotate right</string>
+    <string name="droid_footer">MOTION STUDIES / CHARACTER SERIES</string>
+    <string name="droid_number">NO. 004</string>
+    <string name="droid_scene_description">A green three-dimensional Android robot floats above soft orbital rings. Drag to turn it, or use Say hello and Do a flip.</string>
     <string name="app_name">Motion Studies</string>
     <string name="catalog_brand">motion.</string>
     <string name="catalog_headline">Made to\nmove.</string>
