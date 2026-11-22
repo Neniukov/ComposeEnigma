@@ -22,6 +22,8 @@ import com.neniukov.composeenigma.ui.droid.DroidRoute
 import com.neniukov.composeenigma.ui.droid.navigation.DroidNavKey
 import com.neniukov.composeenigma.ui.journey.JourneyRoute
 import com.neniukov.composeenigma.ui.journey.navigation.JourneyNavKey
+import com.neniukov.composeenigma.ui.paper.PaperRoute
+import com.neniukov.composeenigma.ui.paper.navigation.PaperNavKey
 import com.neniukov.composeenigma.ui.portal.LiquidPortalRoute
 import com.neniukov.composeenigma.ui.portal.navigation.PortalNavKey
 import com.neniukov.composeenigma.ui.vinyl.KineticVinylRoute
@@ -50,6 +52,11 @@ internal fun MotionApp() {
         sceneStrategies = listOf(SinglePaneSceneStrategy()),
         entryProvider = entryProvider {
             entry<CatalogNavKey.Catalog> {
+                val openPaper = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(PaperNavKey.PaperWorlds)
+                    }
+                }
                 val openDroid = dropUnlessResumed {
                     if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
                         backStack.add(DroidNavKey.HelloAndroid)
@@ -74,10 +81,21 @@ internal fun MotionApp() {
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.PaperWorlds -> openPaper()
                             AnimationDemo.HelloAndroid -> openDroid()
                             AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<PaperNavKey.PaperWorlds> {
+                PaperRoute(
+                    isActive = backStack.lastOrNull() == PaperNavKey.PaperWorlds,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == PaperNavKey.PaperWorlds) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )
