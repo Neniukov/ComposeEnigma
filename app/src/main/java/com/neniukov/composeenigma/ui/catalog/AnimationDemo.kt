@@ -8,6 +8,11 @@ internal enum class AnimationDemo(
     @param:StringRes val description: Int,
     @param:StringRes val category: Int,
 ) {
+    NeuralCosmos(
+        title = R.string.cosmos_title,
+        description = R.string.cosmos_description,
+        category = R.string.cosmos_category,
+    ),
     PaperWorlds(
         title = R.string.paper_title,
         description = R.string.paper_description,

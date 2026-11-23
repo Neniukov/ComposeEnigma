@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import com.neniukov.composeenigma.R
 import com.neniukov.composeenigma.ui.components.Glyph
 import com.neniukov.composeenigma.ui.components.GlyphView
+import com.neniukov.composeenigma.ui.cosmos.CosmosCover
 import com.neniukov.composeenigma.ui.droid.DroidCover
 import com.neniukov.composeenigma.ui.paper.PaperCover
 import com.neniukov.composeenigma.ui.portal.LiquidPortalCover
@@ -162,6 +163,7 @@ private fun AnimationCard(demo: AnimationDemo, onOpen: () -> Unit) {
     ) {
         Box(Modifier.size(84.dp).clip(RoundedCornerShape(13.dp)).background(C.Sage)) {
             when (demo) {
+                AnimationDemo.NeuralCosmos -> CosmosCover(Modifier.fillMaxSize())
                 AnimationDemo.PaperWorlds -> PaperCover(Modifier.fillMaxSize())
                 AnimationDemo.HelloAndroid -> DroidCover(Modifier.fillMaxSize())
                 AnimationDemo.KineticVinyl -> KineticVinylCover(Modifier.fillMaxSize())

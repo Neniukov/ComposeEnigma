@@ -18,6 +18,8 @@ import androidx.navigation3.ui.NavDisplay
 import com.neniukov.composeenigma.ui.catalog.AnimationCatalogScreen
 import com.neniukov.composeenigma.ui.catalog.AnimationDemo
 import com.neniukov.composeenigma.ui.catalog.navigation.CatalogNavKey
+import com.neniukov.composeenigma.ui.cosmos.CosmosRoute
+import com.neniukov.composeenigma.ui.cosmos.navigation.CosmosNavKey
 import com.neniukov.composeenigma.ui.droid.DroidRoute
 import com.neniukov.composeenigma.ui.droid.navigation.DroidNavKey
 import com.neniukov.composeenigma.ui.journey.JourneyRoute
@@ -52,6 +54,11 @@ internal fun MotionApp() {
         sceneStrategies = listOf(SinglePaneSceneStrategy()),
         entryProvider = entryProvider {
             entry<CatalogNavKey.Catalog> {
+                val openCosmos = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(CosmosNavKey.NeuralCosmos)
+                    }
+                }
                 val openPaper = dropUnlessResumed {
                     if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
                         backStack.add(PaperNavKey.PaperWorlds)
@@ -81,11 +88,22 @@ internal fun MotionApp() {
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.NeuralCosmos -> openCosmos()
                             AnimationDemo.PaperWorlds -> openPaper()
                             AnimationDemo.HelloAndroid -> openDroid()
                             AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<CosmosNavKey.NeuralCosmos> {
+                CosmosRoute(
+                    isActive = backStack.lastOrNull() == CosmosNavKey.NeuralCosmos,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == CosmosNavKey.NeuralCosmos) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )

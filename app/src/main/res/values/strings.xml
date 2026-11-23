@@ -1,4 +1,24 @@
 <resources>
+    <string name="cosmos_title">Neural Cosmos</string>
+    <string name="cosmos_description">A universe of connections. Turn the stars and set a thought in motion.</string>
+    <string name="cosmos_category">LIGHT, INTELLIGENCE &amp; PLAY</string>
+    <string name="cosmos_brand">cosmos.</string>
+    <string name="cosmos_number">NO. 006</string>
+    <string name="cosmos_back">Back to the collection</string>
+    <string name="cosmos_pause">Pause orbit</string>
+    <string name="cosmos_play">Resume orbit</string>
+    <string name="cosmos_eyebrow">THOUGHT, GIVEN FORM</string>
+    <string name="cosmos_headline">Every thought,\na new universe.</string>
+    <string name="cosmos_subtitle">A living constellation.\nSet a little light in motion.</string>
+    <string name="cosmos_scene_description">A glowing three-dimensional constellation with a luminous core and orbiting stars. Drag to turn it, or tap to send a wave of light through its connections.</string>
+    <string name="cosmos_rotate_left">Turn constellation left</string>
+    <string name="cosmos_rotate_right">Turn constellation right</string>
+    <string name="cosmos_signal">Send a signal</string>
+    <string name="cosmos_edition">THE NEURAL FIELD</string>
+    <string name="cosmos_ready">SIGNAL READY</string>
+    <string name="cosmos_transmitting">LIGHT IN MOTION</string>
+    <string name="cosmos_paused">ORBIT PAUSED</string>
+    <string name="cosmos_hint">DRAG TO EXPLORE · TAP TO CONNECT</string>
     <string name="paper_title">Paper Worlds</string>
     <string name="paper_description">A little alpine escape, folded into a book. Open it and watch a world take shape.</string>
     <string name="paper_category">PAPER, PERSPECTIVE &amp; PLAY</string>
