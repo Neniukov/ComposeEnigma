@@ -28,6 +28,8 @@ import com.neniukov.composeenigma.ui.paper.PaperRoute
 import com.neniukov.composeenigma.ui.paper.navigation.PaperNavKey
 import com.neniukov.composeenigma.ui.portal.LiquidPortalRoute
 import com.neniukov.composeenigma.ui.portal.navigation.PortalNavKey
+import com.neniukov.composeenigma.ui.sand.SandPendulumRoute
+import com.neniukov.composeenigma.ui.sand.navigation.SandNavKey
 import com.neniukov.composeenigma.ui.vinyl.KineticVinylRoute
 import com.neniukov.composeenigma.ui.vinyl.navigation.VinylNavKey
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
@@ -54,6 +56,11 @@ internal fun MotionApp() {
         sceneStrategies = listOf(SinglePaneSceneStrategy()),
         entryProvider = entryProvider {
             entry<CatalogNavKey.Catalog> {
+                val openSand = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(SandNavKey.SandPendulum)
+                    }
+                }
                 val openCosmos = dropUnlessResumed {
                     if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
                         backStack.add(CosmosNavKey.NeuralCosmos)
@@ -88,12 +95,23 @@ internal fun MotionApp() {
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.SandPendulum -> openSand()
                             AnimationDemo.NeuralCosmos -> openCosmos()
                             AnimationDemo.PaperWorlds -> openPaper()
                             AnimationDemo.HelloAndroid -> openDroid()
                             AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<SandNavKey.SandPendulum> {
+                SandPendulumRoute(
+                    isActive = backStack.lastOrNull() == SandNavKey.SandPendulum,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == SandNavKey.SandPendulum) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )

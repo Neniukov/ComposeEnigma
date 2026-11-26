@@ -138,4 +138,12 @@
     <string name="photo_description">Sunrise over the jagged Dolomites and a winding path through green alpine meadows</string>
     <string name="index">01</string>
     <string name="collection_count">/ 03</string>
+    <string name="sand_title">Sand Pendulum</string>
+    <string name="sand_description">A brass stylus carves looping patterns in dark sand.</string>
+    <string name="sand_category">PHYSICS, PATTERN &amp; TOUCH</string>
+    <string name="sand_hint">Pull the brass stylus, then let it swing.</string>
+    <string name="sand_back">Back to the collection</string>
+    <string name="sand_swing">Set it swinging</string>
+    <string name="sand_rake">Rake the sand</string>
+    <string name="sand_stage_description">A brass pendulum carves looping grooves in a round sand tray. Drag the stylus or use Set it swinging.</string>
 </resources>
