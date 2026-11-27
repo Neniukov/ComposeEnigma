@@ -30,6 +30,10 @@ import com.neniukov.composeenigma.ui.portal.LiquidPortalRoute
 import com.neniukov.composeenigma.ui.portal.navigation.PortalNavKey
 import com.neniukov.composeenigma.ui.sand.SandPendulumRoute
 import com.neniukov.composeenigma.ui.sand.navigation.SandNavKey
+import com.neniukov.composeenigma.ui.signal.SignalLockRoute
+import com.neniukov.composeenigma.ui.signal.navigation.SignalNavKey
+import com.neniukov.composeenigma.ui.splice.PageSpliceRoute
+import com.neniukov.composeenigma.ui.splice.navigation.SpliceNavKey
 import com.neniukov.composeenigma.ui.vinyl.KineticVinylRoute
 import com.neniukov.composeenigma.ui.vinyl.navigation.VinylNavKey
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
@@ -56,6 +60,16 @@ internal fun MotionApp() {
         sceneStrategies = listOf(SinglePaneSceneStrategy()),
         entryProvider = entryProvider {
             entry<CatalogNavKey.Catalog> {
+                val openSignal = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(SignalNavKey.SignalLock)
+                    }
+                }
+                val openSplice = dropUnlessResumed {
+                    if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
+                        backStack.add(SpliceNavKey.PageSplice)
+                    }
+                }
                 val openSand = dropUnlessResumed {
                     if (backStack.lastOrNull() == CatalogNavKey.Catalog) {
                         backStack.add(SandNavKey.SandPendulum)
@@ -95,6 +109,8 @@ internal fun MotionApp() {
                     animations = AnimationDemo.entries,
                     onOpen = { demo ->
                         when (demo) {
+                            AnimationDemo.SignalLock -> openSignal()
+                            AnimationDemo.PageSplice -> openSplice()
                             AnimationDemo.SandPendulum -> openSand()
                             AnimationDemo.NeuralCosmos -> openCosmos()
                             AnimationDemo.PaperWorlds -> openPaper()
@@ -102,6 +118,26 @@ internal fun MotionApp() {
                             AnimationDemo.KineticVinyl -> openVinyl()
                             AnimationDemo.LiquidPortal -> openPortal()
                             AnimationDemo.Journey -> openJourney()
+                        }
+                    },
+                )
+            }
+            entry<SignalNavKey.SignalLock> {
+                SignalLockRoute(
+                    isActive = backStack.lastOrNull() == SignalNavKey.SignalLock,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == SignalNavKey.SignalLock) {
+                            backStack.removeAt(backStack.lastIndex)
+                        }
+                    },
+                )
+            }
+            entry<SpliceNavKey.PageSplice> {
+                PageSpliceRoute(
+                    isActive = backStack.lastOrNull() == SpliceNavKey.PageSplice,
+                    onBack = dropUnlessResumed {
+                        if (backStack.lastOrNull() == SpliceNavKey.PageSplice) {
+                            backStack.removeAt(backStack.lastIndex)
                         }
                     },
                 )

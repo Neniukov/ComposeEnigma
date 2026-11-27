@@ -8,6 +8,16 @@ internal enum class AnimationDemo(
     @param:StringRes val description: Int,
     @param:StringRes val category: Int,
 ) {
+    SignalLock(
+        title = R.string.signal_title,
+        description = R.string.signal_description,
+        category = R.string.signal_category,
+    ),
+    PageSplice(
+        title = R.string.splice_title,
+        description = R.string.splice_description,
+        category = R.string.splice_category,
+    ),
     SandPendulum(
         title = R.string.sand_title,
         description = R.string.sand_description,

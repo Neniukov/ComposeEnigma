@@ -146,4 +146,34 @@
     <string name="sand_swing">Set it swinging</string>
     <string name="sand_rake">Rake the sand</string>
     <string name="sand_stage_description">A brass pendulum carves looping grooves in a round sand tray. Drag the stylus or use Set it swinging.</string>
+
+    <string name="splice_title">Splice the Page</string>
+    <string name="splice_description">Drag a strip of winter into a New Year’s postcard.</string>
+    <string name="splice_category">INTERACTIVE POSTCARD</string>
+    <string name="splice_browser_title">Splice the Page</string>
+    <string name="splice_address">http://home.local/2006/</string>
+    <string name="splice_greeting">Happy New Year 2006!</string>
+    <string name="splice_room_file">tree.jpg</string>
+    <string name="splice_yard_file">courtyard.jpg</string>
+    <string name="splice_loading">Loading photos…</string>
+    <string name="splice_drag_hint">Drag the snowy strip into the window.</string>
+    <string name="splice_scene_description">A Christmas tree beside a dark window and a photo of a snowy courtyard</string>
+    <string name="splice_join_action">Place the snowy strip in the window</string>
+    <string name="splice_finished_description">Christmas lights reflect in the window as snow falls outside</string>
+    <string name="splice_back">Back to catalog</string>
+    <string name="splice_replay">Replay</string>
+
+    <string name="signal_title">Signal Lock</string>
+    <string name="signal_description">Tune a rolling CRT signal and reveal the monitor inside itself.</string>
+    <string name="signal_category">ANALOG VIDEO FEEDBACK</string>
+    <string name="signal_hint">Turn the dial until the picture holds.</string>
+    <string name="signal_back">Back</string>
+    <string name="signal_reset">Reset</string>
+    <string name="signal_dial_description">Receiver tuning dial</string>
+    <string name="signal_frequency">FREQUENCY</string>
+    <string name="signal_unit">MHz</string>
+    <string name="signal_tuning">TUNING</string>
+    <string name="signal_sync">SYNC</string>
+    <string name="signal_locked">SIGNAL LOCKED</string>
+    <string name="signal_searching">SEARCHING FOR SYNC</string>
 </resources>

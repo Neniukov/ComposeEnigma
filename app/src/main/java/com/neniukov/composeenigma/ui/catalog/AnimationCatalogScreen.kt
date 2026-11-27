@@ -48,6 +48,8 @@ import com.neniukov.composeenigma.ui.droid.DroidCover
 import com.neniukov.composeenigma.ui.paper.PaperCover
 import com.neniukov.composeenigma.ui.portal.LiquidPortalCover
 import com.neniukov.composeenigma.ui.sand.SandPendulumCover
+import com.neniukov.composeenigma.ui.signal.SignalLockCover
+import com.neniukov.composeenigma.ui.splice.PageSpliceCover
 import com.neniukov.composeenigma.ui.theme.MotionStudiesTheme
 import com.neniukov.composeenigma.ui.vinyl.KineticVinylCover
 import com.neniukov.composeenigma.ui.theme.JourneyColors as C
@@ -164,6 +166,8 @@ private fun AnimationCard(demo: AnimationDemo, onOpen: () -> Unit) {
     ) {
         Box(Modifier.size(84.dp).clip(RoundedCornerShape(13.dp)).background(C.Sage)) {
             when (demo) {
+                AnimationDemo.SignalLock -> SignalLockCover(Modifier.fillMaxSize())
+                AnimationDemo.PageSplice -> PageSpliceCover(Modifier.fillMaxSize())
                 AnimationDemo.SandPendulum -> SandPendulumCover(Modifier.fillMaxSize())
                 AnimationDemo.NeuralCosmos -> CosmosCover(Modifier.fillMaxSize())
                 AnimationDemo.PaperWorlds -> PaperCover(Modifier.fillMaxSize())
